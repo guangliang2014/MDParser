@@ -7,6 +7,7 @@ package fyales.com.mdparser.constant;
  * @date 7/2/15
  */
 public class ParserTagConstant {
+    public static final String PATTERN_TITLE = "(#)+(.)+";
     public static final String TAG_TITLE = "title";         //支持标题(#符号)
     public static final String TAG_IMG = "image";           //支持图片
 }

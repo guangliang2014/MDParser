@@ -2,8 +2,16 @@ package fyales.com.mdparser;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
+
+import java.io.IOException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import fyales.com.mdparser.util.InputFileUtil;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -12,6 +20,19 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        TextView tv = (TextView) findViewById(R.id.test_tv);
+        try {
+            String s = InputFileUtil.read(getResources().getAssets().open("test.md"));
+            Pattern pattern = Pattern.compile("(#)+(.)+(\\s)+(.)+(\\s)+");
+            Matcher m = pattern.matcher(s);
+            while (m.find()){
+                Log.e("fyales",m.group() + "hello world");
+            }
+            tv.setText(s);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
 
