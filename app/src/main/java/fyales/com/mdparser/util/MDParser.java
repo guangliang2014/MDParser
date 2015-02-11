@@ -20,11 +20,12 @@ public class MDParser {
     private final String REGEX_PARA ="#+.+\\s+.+\\s+";
     private final String REGEX_TITLE = "(#+.+\n+)(.+\\s+)";
     private final String REGEX_H = "(^#+)(.+)";
+    private final String REGEX_IMG = "[([.+\\s+])(!\\[.+\\]\\[.+\\])$]";
 
     public MDParser(String s){
         this.data = s;
-        this.list = new ArrayList<String>();
-        this.tags = new ArrayList<List<Tag>>();
+        this.list = new ArrayList<>();
+        this.tags = new ArrayList<>();
     }
 
     public void parseAll(){
@@ -34,7 +35,7 @@ public class MDParser {
             list.add(m.group().toString());
         }
         parseContent();
-        Log.e("fyale", tags.toString());
+        Log.e("fyales", tags.toString());
     }
 
     private void parseContent(){
@@ -42,12 +43,7 @@ public class MDParser {
             Pattern pattern = Pattern.compile(REGEX_TITLE);
             Matcher m = pattern.matcher(list.get(i));
             while(m.find()){
-//                for (int j= 1;j<=m.groupCount();j++){
-//                    Log.e("fyales",m.group(j).toString());
-//                    parseTitle(m.group())
-//                }
                 List<Tag> tagSub = new ArrayList<>();
-                List<Tag> tagPara = new ArrayList<>();
                 tagSub.add(parseTitle(m.group(1)));
                 tagSub.addAll(parsePara(m.group(2)));
                 tags.add(tagSub);
@@ -76,12 +72,38 @@ public class MDParser {
         return tag;
     }
 
+    /**
+     * 解析除标题外的其他内容
+     * @param s
+     * @return
+     */
     private ArrayList<Tag> parsePara(String s){
         ArrayList<Tag> pTags= new ArrayList<>();
-        Tag tag = new Tag();
-        tag.setName(Tag.TAG_P);
-        tag.setContent(s);
-        pTags.add(tag);
+        Pattern pattern = Pattern.compile(REGEX_IMG);
+        Matcher m = pattern.matcher(s);
+        while(m.find()){
+
+            try{
+                if (m.groupCount() == 1){
+                    Tag contentTag = new Tag();
+                    contentTag.setName(Tag.TAG_P);
+                    contentTag.setContent(m.group(1));
+                }else{
+                    Tag contentTag = new Tag();
+                    contentTag.setName(Tag.TAG_P);
+                    contentTag.setContent(m.group(1));
+                    Tag imgTag = new Tag();
+                    imgTag.setName(Tag.TAG_IMG);
+                    imgTag.setContent(m.group(2));
+                    pTags.add(contentTag);
+                    pTags.add(imgTag);
+                }
+            }catch(Exception e){
+                e.printStackTrace();
+            }finally{
+
+            }
+        }
         return pTags;
     }
 
