@@ -17,10 +17,10 @@ public class MDParser {
     private String data;
     private List<String> list;
     private List<List<Tag>> tags;
-    private final String REGEX_PARA ="#+.+\\s+.+\\s+";
+    private final String REGEX_PARA ="#+.+\n+[\\w+|\\s+\\.+\\u3002\\uff1b\\uff0c\\uff1a\\u201c\\u201d\\uff08\\uff09\\u3001\\uff1f\\u300a\\u300b]+";
     private final String REGEX_TITLE = "(#+.+\n+)(.+\\s+)";
     private final String REGEX_H = "(^#+)(.+)";
-    private final String REGEX_IMG = "[([.+\\s+])(!\\[.+\\]\\[.+\\])$]";
+    private final String REGEX_IMG = "(.+\\s+.+)(!\\[.+\\]\\(.+\\))?";
 
     public MDParser(String s){
         this.data = s;
@@ -35,7 +35,7 @@ public class MDParser {
             list.add(m.group().toString());
         }
         parseContent();
-        Log.e("fyales", tags.toString());
+        Log.e("fyales",list.toString());
     }
 
     private void parseContent(){
@@ -84,6 +84,7 @@ public class MDParser {
         while(m.find()){
 
             try{
+                int count = m.groupCount();
                 if (m.groupCount() == 1){
                     Tag contentTag = new Tag();
                     contentTag.setName(Tag.TAG_P);
