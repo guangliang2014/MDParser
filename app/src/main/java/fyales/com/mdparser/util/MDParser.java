@@ -17,10 +17,10 @@ public class MDParser {
     private String data;
     private List<String> list;
     private List<List<Tag>> tags;
-    private final String REGEX_PARA ="#+.+\n+[\\w+|\\s+\\.+\\u3002\\uff1b\\uff0c\\uff1a\\u201c\\u201d\\uff08\\uff09\\u3001\\uff1f\\u300a\\u300b]+";
-    private final String REGEX_TITLE = "(#+.+\n+)(.+\\s+)";
+    private final String REGEX_PARA ="#+.+\n+[^#]+";
+    private final String REGEX_TITLE = "(#+.+\n+)([^#]+)";
     private final String REGEX_H = "(^#+)(.+)";
-    private final String REGEX_IMG = "(.+\\s+.+)(!\\[.+\\]\\(.+\\))?";
+    private final String REGEX_IMG = "[^(!\\[[^\\]]+\\]\\([^\\)]+\\))]+(!\\[[^\\]]+\\]\\([^\\)]+\\))?";
 
     public MDParser(String s){
         this.data = s;
@@ -33,9 +33,9 @@ public class MDParser {
         Matcher m = pattern.matcher(data);
         while (m.find()){
             list.add(m.group().toString());
+//            Log.d("fyales","the para is " + m.group().toString());
         }
         parseContent();
-        Log.e("fyales",list.toString());
     }
 
     private void parseContent(){
@@ -44,6 +44,8 @@ public class MDParser {
             Matcher m = pattern.matcher(list.get(i));
             while(m.find()){
                 List<Tag> tagSub = new ArrayList<>();
+//                Log.d("fyales","the title of para is " + m.group(1));
+//                Log.d("fyales","the content of para is " + m.group(2));
                 tagSub.add(parseTitle(m.group(1)));
                 tagSub.addAll(parsePara(m.group(2)));
                 tags.add(tagSub);
@@ -85,19 +87,24 @@ public class MDParser {
 
             try{
                 int count = m.groupCount();
-                if (m.groupCount() == 1){
+                Log.e("fyales","the count is " + count);
+                Log.e("fyales","the data is " + m.group());
+                if (m.groupCount() == 2){
                     Tag contentTag = new Tag();
                     contentTag.setName(Tag.TAG_P);
                     contentTag.setContent(m.group(1));
+                    Log.e("fyales","the text of content is " + m.group(1));
                 }else{
-                    Tag contentTag = new Tag();
-                    contentTag.setName(Tag.TAG_P);
-                    contentTag.setContent(m.group(1));
-                    Tag imgTag = new Tag();
-                    imgTag.setName(Tag.TAG_IMG);
-                    imgTag.setContent(m.group(2));
-                    pTags.add(contentTag);
-                    pTags.add(imgTag);
+//                    Tag contentTag = new Tag();
+//                    contentTag.setName(Tag.TAG_P);
+//                    contentTag.setContent(m.group(1));
+//                    Tag imgTag = new Tag();
+//                    imgTag.setName(Tag.TAG_IMG);
+//                    imgTag.setContent(m.group(2));
+//                    pTags.add(contentTag);
+//                    pTags.add(imgTag);
+//                    Log.d("fyales","the text of content is " + m.group(1));
+//                    Log.d("fyales","the image of content is " + m.group(2));
                 }
             }catch(Exception e){
                 e.printStackTrace();
