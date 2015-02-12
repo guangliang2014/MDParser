@@ -20,7 +20,7 @@ public class MDParser {
     private final String REGEX_PARA ="#+.+\n+[^#]+";
     private final String REGEX_TITLE = "(#+.+\n+)([^#]+)";
     private final String REGEX_H = "(^#+)(.+)";
-    private final String REGEX_IMG = "[^(!\\[[^\\]]+\\]\\([^\\)]+\\))]+(!\\[[^\\]]+\\]\\([^\\)]+\\))?";
+    private final String REGEX_IMG = "!\\[[^\\]]+\\]\\([^\\)]+\\)";
 
     public MDParser(String s){
         this.data = s;
