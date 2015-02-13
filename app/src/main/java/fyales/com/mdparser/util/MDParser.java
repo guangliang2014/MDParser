@@ -13,9 +13,10 @@ import fyales.com.mdparser.entity.Tag;
  * 解析类
  * <p>目前支持两种标签</p>
  * <ul>
- *     <li>#标签</li>
- *     <li>图片标签</li>
+ * <li>#标签</li>
+ * <li>图片标签</li>
  * </ul>
+ *
  * @author fyales
  * @date 10/02/15
  */
@@ -34,14 +35,15 @@ public class MDParser {
         this.tags = new ArrayList<>();
     }
 
-    public void parseAll() {
+    public List<List<Tag>> parseAll() {
         Pattern pattern = Pattern.compile(REGEX_PARA);
         Matcher m = pattern.matcher(data);
         while (m.find()) {
             list.add(m.group().toString());
-            Log.d("fyales","the para is " + m.group().toString());
+            Log.d("fyales", "the para is " + m.group().toString());
         }
         parseContent();
+        return tags;
     }
 
     private void parseContent() {
@@ -50,8 +52,8 @@ public class MDParser {
             Matcher m = pattern.matcher(list.get(i));
             while (m.find()) {
                 List<Tag> tagSub = new ArrayList<>();
-                Log.d("fyales","the title of para is " + m.group(1));
-                Log.d("fyales","the content of para is " + m.group(2));
+                Log.d("fyales", "the title of para is " + m.group(1));
+                Log.d("fyales", "the content of para is " + m.group(2));
                 tagSub.add(parseTitle(m.group(1)));
                 tagSub.addAll(parsePara(m.group(2)));
                 tags.add(tagSub);
@@ -102,13 +104,12 @@ public class MDParser {
                 pTags.add(contentTag);
                 Log.d("fyales", "the text of content is " + m.group(1));
 
-                if (m.group(2) != null) {
+                if (m.group(2) != null && ImageParser.getURL(m.group(2)) != null) {
                     Tag imgTag = new Tag();
                     imgTag.setName(Tag.TAG_IMG);
-                    imgTag.setContent(m.group(2));
+                    imgTag.setContent(ImageParser.getURL(m.group(2)));
                     pTags.add(imgTag);
                     Log.d("fyales", "the image of content is " + m.group(2));
-
                 }
             } catch (Exception e) {
                 e.printStackTrace();

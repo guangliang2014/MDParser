@@ -2,32 +2,26 @@ package fyales.com.mdparser;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
 import java.io.IOException;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import fyales.com.mdparser.util.InputFileUtil;
-import fyales.com.mdparser.util.MDParser;
+import fyales.com.mdparser.widget.MDLayout;
 
 
 public class MainActivity extends ActionBarActivity {
+
+    MDLayout mMDLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        TextView tv = (TextView) findViewById(R.id.test_tv);
+        mMDLayout = (MDLayout) findViewById(R.id.md_container);
         try {
-            String s = InputFileUtil.read(getResources().getAssets().open("test.md"));
-            MDParser parser = new MDParser(s);
-            parser.parseAll();
-
-            tv.setText(s);
+            mMDLayout.addData(getResources().getAssets().open("test.md"));
+            mMDLayout.drawData(this);
         } catch (IOException e) {
             e.printStackTrace();
         }

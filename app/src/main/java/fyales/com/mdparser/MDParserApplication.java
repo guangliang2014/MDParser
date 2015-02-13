@@ -1,3 +1,5 @@
+package fyales.com.mdparser;
+
 import android.app.Application;
 
 import fyales.com.mdparser.image.FyalesImageLoader;
