@@ -1,6 +1,7 @@
 package fyales.com.mdparser.widget;
 
 import android.content.Context;
+import android.text.TextPaint;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,6 +15,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
+import fyales.com.mdparser.R;
 import fyales.com.mdparser.entity.Tag;
 import fyales.com.mdparser.image.FyalesImageLoader;
 import fyales.com.mdparser.util.InputFileUtil;
@@ -66,7 +68,12 @@ public class MDLayout extends LinearLayout{
                     ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
                     textView.setLayoutParams(params);
                     textView.setText(content);
-                    textView.setTextSize(18);
+                    textView.setTextSize(20);
+                    TextPaint tp = textView.getPaint();
+                    tp.setFakeBoldText(true);
+                    textView.setPadding(0,4,0,4);
+                    textView.setSingleLine();
+                    textView.setTextColor(getResources().getColor(R.color.title));
                     this.addView(textView);
                 }else if (type.equals(Tag.TAG_IMG)){
                     ImageView imageView = new ImageView(context);
@@ -79,7 +86,9 @@ public class MDLayout extends LinearLayout{
                     TextView textView = new TextView(context);
                     ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
                     textView.setLayoutParams(params);
-                    textView.setTextSize(16);
+                    textView.setTextSize(18);
+                    textView.setLineSpacing(0.0f,1.2f);
+                    textView.setTextColor(getResources().getColor(R.color.primary_text));
                     textView.setText(content);
                     this.addView(textView);
                 }
