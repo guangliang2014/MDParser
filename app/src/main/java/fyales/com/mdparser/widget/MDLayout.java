@@ -83,6 +83,11 @@ public class MDLayout extends LinearLayout{
                     this.addView(imageView);
 
                 }else if (type.equals(Tag.TAG_P)){
+                    if (j != (tags.get(i).size() - 1)){
+                        if(tags.get(i).get(j+1).getName().equals(Tag.TAG_P)){
+                            content += tags.get(i).get(j + 1).getContent();
+                        }
+                    }
                     TextView textView = new TextView(context);
                     ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
                     textView.setLayoutParams(params);
