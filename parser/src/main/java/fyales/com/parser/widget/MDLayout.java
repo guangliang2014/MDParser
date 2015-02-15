@@ -1,12 +1,8 @@
-package fyales.com.mdparser.widget;
+package fyales.com.parser.widget;
 
 import android.content.Context;
-import android.text.TextPaint;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.Gravity;
-import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -14,15 +10,15 @@ import android.widget.TextView;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
-import fyales.com.mdparser.R;
-import fyales.com.mdparser.entity.Tag;
-import fyales.com.mdparser.image.FyalesImageLoader;
-import fyales.com.mdparser.util.InputFileUtil;
-import fyales.com.mdparser.util.MDParser;
+import fyales.com.parser.R;
+import fyales.com.parser.entity.Tag;
+import fyales.com.parser.image.FyalesImageLoader;
+import fyales.com.parser.util.InputFileUtil;
+import fyales.com.parser.util.MDParser;
+
 
 /**
  * @author fyales
@@ -76,7 +72,7 @@ public class MDLayout extends LinearLayout{
                     textView.setTextSize(20);
                     textView.setSingleLine();
                     textView.setTextColor(getResources().getColor(R.color.title));
-                    textView.setPadding(0, 50, 0, 30);
+                    textView.setPadding(0, 70, 0, 30);
                     textView.setGravity(Gravity.CENTER);
                     this.addView(textView);
                 }else if (type.equals(Tag.TAG_IMG)){
@@ -84,7 +80,7 @@ public class MDLayout extends LinearLayout{
                     ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
                     imageView.setLayoutParams(params);
                     imageView.setPadding(0,0,0,0);
-                    FyalesImageLoader.displayImage(content,imageView);
+                    FyalesImageLoader.displayImage(content, imageView);
                     this.addView(imageView);
 
                     TextView textView = new TextView(context);

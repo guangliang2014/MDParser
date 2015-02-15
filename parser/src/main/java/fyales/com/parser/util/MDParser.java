@@ -1,4 +1,4 @@
-package fyales.com.mdparser.util;
+package fyales.com.parser.util;
 
 import android.util.Log;
 
@@ -8,7 +8,8 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import fyales.com.mdparser.entity.Tag;
+import fyales.com.parser.entity.Tag;
+
 
 /**
  * 解析类

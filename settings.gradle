@@ -1,2 +1,1 @@
-include ':parser'
-include 'app'
+include ':app',"parser"

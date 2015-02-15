@@ -1,4 +1,4 @@
-package fyales.com.mdparser.entity;
+package fyales.com.parser.entity;
 
 
 import java.util.Map;

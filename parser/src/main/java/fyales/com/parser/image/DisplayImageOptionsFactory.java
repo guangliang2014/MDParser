@@ -1,10 +1,11 @@
-package fyales.com.mdparser.image;
+package fyales.com.parser.image;
 
 import android.graphics.Bitmap;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 
-import fyales.com.mdparser.R;
+import fyales.com.parser.R;
+
 
 /**
  * @author fyales

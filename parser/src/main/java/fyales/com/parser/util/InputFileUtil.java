@@ -1,4 +1,4 @@
-package fyales.com.mdparser.util;
+package fyales.com.parser.util;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;

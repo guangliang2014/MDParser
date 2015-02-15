@@ -1,4 +1,4 @@
-package fyales.com.mdparser.image;
+package fyales.com.parser.image;
 
 import android.annotation.TargetApi;
 import android.os.Build;

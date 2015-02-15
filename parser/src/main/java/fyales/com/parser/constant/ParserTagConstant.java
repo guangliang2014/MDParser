@@ -1,4 +1,4 @@
-package fyales.com.mdparser.constant;
+package fyales.com.parser.constant;
 
 /**
  * 解析器支持的标签类型
