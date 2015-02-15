@@ -1,6 +1,8 @@
 package fyales.com.mdparser.entity;
 
 
+import java.util.Map;
+
 /**
  * 标签的实体类
  *
@@ -17,8 +19,10 @@ public class Tag {
     public static final String TAG_A = "a";
     public static final String TAG_IMG = "img";
     public static final String TAG_P = "p";
+    public static final String ATTRIBUTE_IMG_DESC = "image_desc";
     public String name;
     public String content;
+    public Map<String,String> attributes;
 
     public String getName() {
         return name;
@@ -36,11 +40,20 @@ public class Tag {
         this.content = content;
     }
 
+    public Map<String, String> getAttributes() {
+        return attributes;
+    }
+
+    public void setAttributes(Map<String, String> attributes) {
+        this.attributes = attributes;
+    }
+
     @Override
     public String toString() {
         return "Tag{" +
                 "name='" + name + '\'' +
                 ", content='" + content + '\'' +
+                ", attributes=" + attributes +
                 '}';
     }
 }

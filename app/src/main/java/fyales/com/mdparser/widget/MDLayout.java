@@ -4,6 +4,7 @@ import android.content.Context;
 import android.text.TextPaint;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -73,18 +74,28 @@ public class MDLayout extends LinearLayout{
                     textView.setLayoutParams(params);
                     textView.setText(content);
                     textView.setTextSize(20);
-                    TextPaint tp = textView.getPaint();
-                    tp.setFakeBoldText(true);
-                    textView.setPadding(0,4,0,4);
                     textView.setSingleLine();
                     textView.setTextColor(getResources().getColor(R.color.title));
+                    textView.setPadding(0, 50, 0, 30);
+                    textView.setGravity(Gravity.CENTER);
                     this.addView(textView);
                 }else if (type.equals(Tag.TAG_IMG)){
                     ImageView imageView = new ImageView(context);
                     ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
                     imageView.setLayoutParams(params);
+                    imageView.setPadding(0,0,0,0);
                     FyalesImageLoader.displayImage(content,imageView);
                     this.addView(imageView);
+
+                    TextView textView = new TextView(context);
+                    textView.setLayoutParams(params);
+                    textView.setTextSize(16);
+                    textView.setLineSpacing(0.0f,1.0f);
+                    textView.setGravity(Gravity.CENTER);
+                    textView.setTextColor(getResources().getColor(R.color.secondary_text));
+                    textView.setText(tag.getAttributes().get(Tag.ATTRIBUTE_IMG_DESC).trim());
+                    textView.setPadding(0,-10,0,40);
+                    this.addView(textView);
 
                 }else if (type.equals(Tag.TAG_P)){
                     boolean hasPNext = true;
@@ -101,51 +112,14 @@ public class MDLayout extends LinearLayout{
                     ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
                     textView.setLayoutParams(params);
                     textView.setTextSize(18);
-                    textView.setLineSpacing(0.0f,1.2f);
-                    textView.setTextColor(getResources().getColor(R.color.primary_text));
-                    textView.setText(content);
+                    textView.setLineSpacing(0.0f,1.4f);
+                    textView.setTextColor(getResources().getColor(R.color.secondary_text));
+                    textView.setText(content.trim());
+                    textView.setPadding(0,0,0,0);
                     this.addView(textView);
                 }
             }
-            for (j = 0;j < tags.get(i).size();j++){
-                String type = tags.get(i).get(j).getName();
-                String content =tags.get(i).get(j).getContent();
-                if (type.equals(Tag.TAG_H3)){
-                    TextView textView = new TextView(context);
-                    ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
-                    textView.setLayoutParams(params);
-                    textView.setText(content);
-                    textView.setTextSize(20);
-                    TextPaint tp = textView.getPaint();
-                    tp.setFakeBoldText(true);
-                    textView.setPadding(0,4,0,4);
-                    textView.setSingleLine();
-                    textView.setTextColor(getResources().getColor(R.color.title));
-                    this.addView(textView);
-                }else if (type.equals(Tag.TAG_IMG)){
-                    ImageView imageView = new ImageView(context);
-                    ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
-                    imageView.setLayoutParams(params);
-                    FyalesImageLoader.displayImage(content,imageView);
-                    this.addView(imageView);
 
-                }else if (type.equals(Tag.TAG_P)){
-                    if (j != (tags.get(i).size() - 1)){
-                        if(tags.get(i).get(j+1).getName().equals(Tag.TAG_P)){
-                            content += tags.get(i).get(j + 1).getContent();
-                        }
-                    }
-                    TextView textView = new TextView(context);
-                    ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
-                    textView.setLayoutParams(params);
-                    textView.setTextSize(18);
-                    textView.setLineSpacing(0.0f,1.2f);
-                    textView.setTextColor(getResources().getColor(R.color.primary_text));
-                    textView.setText(content);
-                    this.addView(textView);
-                }
-                Log.e("fyales","the tag is " + tags.get(i).get(j).toString());
-            }
         }
 
     }

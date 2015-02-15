@@ -3,6 +3,7 @@ package fyales.com.mdparser.util;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -24,12 +25,15 @@ public class MDParser {
     private String data;
     private List<String> list;
     private List<List<Tag>> tags;
+    private final String REGEX_N = "[^\n](\n){1,10}";
     private final String REGEX_PARA = "#+.+\n+[^#]+";
     private final String REGEX_TITLE = "(#+.+\n+)([^#]+)";
     private final String REGEX_H = "(^#+)(.+)";
     private final String REGEX_IMG = "([^!]+)(!\\[[^\\]]+\\]\\([^\\)]+\\))?";
 
     public MDParser(String s) {
+        s = parseLineFeed(s);
+        Log.e("fyales",s);
         this.data = s;
         this.list = new ArrayList<>();
         this.tags = new ArrayList<>();
@@ -96,18 +100,23 @@ public class MDParser {
         while (m.find()) {
 
             try {
-                int count = m.groupCount();
-                Tag contentTag = new Tag();
-                contentTag.setName(Tag.TAG_P);
-                contentTag.setContent(m.group(1));
+                if (m.group(1) != null){
+                    Tag contentTag = new Tag();
+                    contentTag.setName(Tag.TAG_P);
+                    contentTag.setContent(m.group(1));
 
-                pTags.add(contentTag);
-                Log.d("fyales", "the text of content is " + m.group(1));
+                    pTags.add(contentTag);
+                    Log.d("fyales", "the text of content is " + m.group(1));
+                }
+
 
                 if (m.group(2) != null && ImageParser.getURL(m.group(2)) != null) {
                     Tag imgTag = new Tag();
                     imgTag.setName(Tag.TAG_IMG);
                     imgTag.setContent(ImageParser.getURL(m.group(2)));
+                    HashMap<String,String> map = new HashMap<>();
+                    map.put(Tag.ATTRIBUTE_IMG_DESC,ImageParser.getDesc(m.group(2)));
+                    imgTag.setAttributes(map);
                     pTags.add(imgTag);
                     Log.d("fyales", "the image of content is " + m.group(2));
                 }
@@ -118,6 +127,15 @@ public class MDParser {
             }
         }
         return pTags;
+    }
+
+    /**
+     * 除去多余的换行符
+     * @param s
+     * @return
+     */
+    private String parseLineFeed(String s){
+        return s.replaceAll("\n{2,10}","\n\n");
     }
 
 

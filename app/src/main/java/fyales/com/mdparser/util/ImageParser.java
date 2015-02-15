@@ -11,9 +11,19 @@ import java.util.regex.Pattern;
  */
 public class ImageParser {
 
-    private static final String REGEX_IMG = "!\\[[^\\]]+\\]\\(([^\\)]+)\\)";
+    private static final String REGEX_IMG = "!\\[([^\\]]+)\\]\\(([^\\)]+)\\)";
 
     public static String getURL(String s){
+        Pattern pattern = Pattern.compile(REGEX_IMG);
+        Matcher matcher = pattern.matcher(s);
+        if (matcher.find()){
+            return matcher.group(2);
+        }else {
+            return null;
+        }
+    }
+
+    public static String getDesc(String s){
         Pattern pattern = Pattern.compile(REGEX_IMG);
         Matcher matcher = pattern.matcher(s);
         if (matcher.find()){
