@@ -59,33 +59,11 @@ public class MDParser {
                 List<Tag> tagSub = new ArrayList<>();
                 Log.d("fyales", "the title of para is " + m.group(1));
                 Log.d("fyales", "the content of para is " + m.group(2));
-                tagSub.add(parseTitle(m.group(1)));
+                tagSub.add(HeaderParser.parse(m.group(1)));
                 tagSub.addAll(parsePara(m.group(2)));
                 tags.add(tagSub);
             }
         }
-    }
-
-    /**
-     * 解析标题
-     *
-     * @param s 形式举例 ## Title
-     * @return
-     */
-    private Tag parseTitle(String s) {
-        Pattern pattern = Pattern.compile(REGEX_H);
-        Matcher m = pattern.matcher(s);
-        Tag tag = new Tag();
-        while (m.find()) {
-            try {
-                tag.setName(Tag.TAG_H3);
-                tag.setContent(m.group(2).trim());
-            } catch (Exception e) {
-                e.printStackTrace();
-            } finally {
-            }
-        }
-        return tag;
     }
 
     /**
