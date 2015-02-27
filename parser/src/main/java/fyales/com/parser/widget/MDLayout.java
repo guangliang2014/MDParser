@@ -65,77 +65,41 @@ public class MDLayout extends LinearLayout {
                 int type = tag.getName();
                 String content = tag.getContent();
                 switch (type) {
-                    case Tag.TAG_H1:
-                        TextView h1TextView = new TextView(context);
-                        ViewGroup.LayoutParams h1Params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                        h1TextView.setLayoutParams(h1Params);
-                        h1TextView.setText(content);
-                        h1TextView.setTextSize(24);
-                        h1TextView.setSingleLine();
-                        h1TextView.setTextColor(getResources().getColor(R.color.title));
-                        h1TextView.setPadding(0, 70, 0, 30);
-                        h1TextView.setGravity(Gravity.CENTER);
-                        this.addView(h1TextView);
-                        break;
-                    case Tag.TAG_H2:
-                        TextView h2TextView = new TextView(context);
-                        ViewGroup.LayoutParams h2Params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                        h2TextView.setLayoutParams(h2Params);
-                        h2TextView.setText(content);
-                        h2TextView.setTextSize(22);
-                        h2TextView.setSingleLine();
-                        h2TextView.setTextColor(getResources().getColor(R.color.title));
-                        h2TextView.setPadding(0, 70, 0, 30);
-                        h2TextView.setGravity(Gravity.CENTER);
-                        this.addView(h2TextView);
-                        break;
-                    case Tag.TAG_H3:
-                        TextView h3TextView = new TextView(context);
-                        ViewGroup.LayoutParams h3Params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                        h3TextView.setLayoutParams(h3Params);
-                        h3TextView.setText(content);
-                        h3TextView.setTextSize(20);
-                        h3TextView.setSingleLine();
-                        h3TextView.setTextColor(getResources().getColor(R.color.title));
-                        h3TextView.setPadding(0, 70, 0, 30);
-                        h3TextView.setGravity(Gravity.CENTER);
-                        this.addView(h3TextView);
-                        break;
-                    case Tag.TAG_H4:
-                        TextView h4TextView = new TextView(context);
-                        ViewGroup.LayoutParams h4Params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                        h4TextView.setLayoutParams(h4Params);
-                        h4TextView.setText(content);
-                        h4TextView.setTextSize(18);
-                        h4TextView.setSingleLine();
-                        h4TextView.setTextColor(getResources().getColor(R.color.title));
-                        h4TextView.setPadding(0, 70, 0, 30);
-                        h4TextView.setGravity(Gravity.CENTER);
-                        this.addView(h4TextView);
-                        break;
-                    case Tag.TAG_H5:
-                        TextView h5TextView = new TextView(context);
-                        ViewGroup.LayoutParams h5Params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                        h5TextView.setLayoutParams(h5Params);
-                        h5TextView.setText(content);
-                        h5TextView.setTextSize(16);
-                        h5TextView.setSingleLine();
-                        h5TextView.setTextColor(getResources().getColor(R.color.title));
-                        h5TextView.setPadding(0, 70, 0, 30);
-                        h5TextView.setGravity(Gravity.CENTER);
-                        this.addView(h5TextView);
-                        break;
-                    case Tag.TAG_H6:
-                        TextView h6TextView = new TextView(context);
-                        ViewGroup.LayoutParams h6Params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                        h6TextView.setLayoutParams(h6Params);
-                        h6TextView.setText(content);
-                        h6TextView.setTextSize(14);
-                        h6TextView.setSingleLine();
-                        h6TextView.setTextColor(getResources().getColor(R.color.title));
-                        h6TextView.setPadding(0, 70, 0, 30);
-                        h6TextView.setGravity(Gravity.CENTER);
-                        this.addView(h6TextView);
+                    case Tag.TAG_H:
+                        TextView hTextView = new TextView(context);
+                        ViewGroup.LayoutParams hParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                        hTextView.setLayoutParams(hParams);
+                        hTextView.setText(content);
+                        switch ((Integer) tag.getAttributes().get(Tag.ATTRIBUTE_HEADER_SIZE)) {
+                            case Tag.TAG_H1:
+                                hTextView.setTextSize(24);
+                                break;
+                            case Tag.TAG_H2:
+                                hTextView.setTextSize(22);
+                                break;
+
+                            case Tag.TAG_H3:
+                                hTextView.setTextSize(20);
+                                break;
+
+                            case Tag.TAG_H4:
+                                hTextView.setTextSize(18);
+                                break;
+
+                            case Tag.TAG_H5:
+                                hTextView.setTextSize(16);
+                                break;
+
+                            case Tag.TAG_H6:
+                                hTextView.setTextSize(14);
+                                break;
+
+                        }
+                        hTextView.setSingleLine();
+                        hTextView.setTextColor(getResources().getColor(R.color.title));
+                        hTextView.setPadding(0, 70, 0, 30);
+                        hTextView.setGravity(Gravity.CENTER);
+                        this.addView(hTextView);
                         break;
                     case Tag.TAG_IMG:
                         ImageView imageView = new ImageView(context);
@@ -151,7 +115,7 @@ public class MDLayout extends LinearLayout {
                         imgTextView.setLineSpacing(0.0f, 1.0f);
                         imgTextView.setGravity(Gravity.CENTER);
                         imgTextView.setTextColor(getResources().getColor(R.color.secondary_text));
-                        imgTextView.setText(tag.getAttributes().get(Tag.ATTRIBUTE_IMG_DESC).trim());
+                        imgTextView.setText(((String) tag.getAttributes().get(Tag.ATTRIBUTE_IMG_DESC)).trim());
                         imgTextView.setPadding(0, -10, 0, 40);
                         this.addView(imgTextView);
                         break;

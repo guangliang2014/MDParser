@@ -10,6 +10,7 @@ import java.util.Map;
  * @date 10/02/15
  */
 public class Tag {
+    public static final int TAG_H = 0;
     public static final int TAG_H1 = 1;
     public static final int TAG_H2 = 2;
     public static final int TAG_H3 = 3;
@@ -20,9 +21,10 @@ public class Tag {
     public static final int TAG_IMG = 8;
     public static final int TAG_P = 9;
     public static final String ATTRIBUTE_IMG_DESC = "image_desc";
+    public static final String ATTRIBUTE_HEADER_SIZE = "header_size";
     public int name;
     public String content;
-    public Map<String,String> attributes;
+    public Map<String,? extends Object> attributes;
 
     public int getName() {
         return name;
@@ -40,11 +42,11 @@ public class Tag {
         this.content = content;
     }
 
-    public Map<String, String> getAttributes() {
+    public Map<String, ? extends Object> getAttributes() {
         return attributes;
     }
 
-    public void setAttributes(Map<String, String> attributes) {
+    public void setAttributes(Map<String, ? extends Object> attributes) {
         this.attributes = attributes;
     }
 

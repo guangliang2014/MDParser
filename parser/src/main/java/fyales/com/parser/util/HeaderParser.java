@@ -1,5 +1,7 @@
 package fyales.com.parser.util;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -27,28 +29,31 @@ public class HeaderParser {
         while (m.find()){
             if (m.group(1) != null && m.group(2) != null){
                 tag.setContent(m.group(2));
+                tag.setName(Tag.TAG_H);
+                Map<String,Integer> map = new HashMap<>();
                 switch (m.group(1).length()){
                     case H1:
-                        tag.setName(Tag.TAG_H1);
+                        map.put(Tag.ATTRIBUTE_HEADER_SIZE,Tag.TAG_H1);
                         break;
                     case H2:
-                        tag.setName(Tag.TAG_H2);
+                        map.put(Tag.ATTRIBUTE_HEADER_SIZE, Tag.TAG_H2);
                         break;
                     case H3:
-                        tag.setName(Tag.TAG_H3);
+                        map.put(Tag.ATTRIBUTE_HEADER_SIZE, Tag.TAG_H3);
                         break;
                     case H4:
-                        tag.setName(Tag.TAG_H4);
+                        map.put(Tag.ATTRIBUTE_HEADER_SIZE, Tag.TAG_H4);
                         break;
                     case H5:
-                        tag.setName(Tag.TAG_H5);
+                        map.put(Tag.ATTRIBUTE_HEADER_SIZE, Tag.TAG_H5);
                         break;
                     case H6:
-                        tag.setName(Tag.TAG_H6);
+                        map.put(Tag.ATTRIBUTE_HEADER_SIZE, Tag.TAG_H6);
                         break;
                     default:
-                        tag.setName(Tag.TAG_H3);
+                        map.put(Tag.ATTRIBUTE_HEADER_SIZE, Tag.TAG_H3);
                 }
+                tag.setAttributes(map);
             }
         }
 
