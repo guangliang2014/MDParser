@@ -10,25 +10,25 @@ import java.util.Map;
  * @date 10/02/15
  */
 public class Tag {
-    public static final String TAG_H1 = "h1";
-    public static final String TAG_H2 = "h2";
-    public static final String TAG_H3 = "h3";
-    public static final String TAG_H4 = "h4";
-    public static final String TAG_H5 = "h5";
-    public static final String TAG_H6 = "h6";
-    public static final String TAG_A = "a";
-    public static final String TAG_IMG = "img";
-    public static final String TAG_P = "p";
+    public static final int TAG_H1 = 1;
+    public static final int TAG_H2 = 2;
+    public static final int TAG_H3 = 3;
+    public static final int TAG_H4 = 4;
+    public static final int TAG_H5 = 5;
+    public static final int TAG_H6 = 6;
+    public static final int TAG_A = 7;
+    public static final int TAG_IMG = 8;
+    public static final int TAG_P = 9;
     public static final String ATTRIBUTE_IMG_DESC = "image_desc";
-    public String name;
+    public int name;
     public String content;
     public Map<String,String> attributes;
 
-    public String getName() {
+    public int getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(int name) {
         this.name = name;
     }
 
