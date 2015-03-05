@@ -8,7 +8,7 @@ import java.io.InputStream;
 
 /**
  * @author fyales
- * @date 10/02/15
+ * @since date 10/02/15
  */
 public class InputFileUtil {
     //读取文件

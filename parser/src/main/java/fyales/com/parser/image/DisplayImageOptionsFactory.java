@@ -9,7 +9,7 @@ import fyales.com.parser.R;
 
 /**
  * @author fyales
- * @date 13/02/15
+ * @since date 13/02/15
  */
 public class DisplayImageOptionsFactory {
     public static DisplayImageOptions createBasicImageOptions(){

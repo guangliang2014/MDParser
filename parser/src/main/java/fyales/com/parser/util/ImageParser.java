@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
  * 将图片格式里面的image地址提取出来的工具类
  *
  * @author fyales
- * @date 13/02/15
+ * @since date 13/02/15
  */
 public class ImageParser {
 

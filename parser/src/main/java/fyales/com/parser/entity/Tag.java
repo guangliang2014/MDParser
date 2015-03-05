@@ -7,7 +7,7 @@ import java.util.Map;
  * 标签的实体类
  *
  * @author fyales
- * @date 10/02/15
+ * @since date 10/02/15
  */
 public class Tag {
     public static final int TAG_H = 0;

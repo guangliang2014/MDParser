@@ -20,7 +20,7 @@ import fyales.com.parser.entity.Tag;
  * </ul>
  *
  * @author fyales
- * @date 10/02/15
+ * @since date 10/02/15
  */
 public class MDParser {
     private String data;

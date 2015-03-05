@@ -4,7 +4,7 @@ package fyales.com.parser.constant;
  * 解析器支持的标签类型
  *
  * @author fyales
- * @date 7/2/15
+ * @since date 7/2/15
  */
 public class ParserTagConstant {
     public static final String PATTERN_TITLE = "(#)+(.)+";

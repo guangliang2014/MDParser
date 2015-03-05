@@ -10,7 +10,7 @@ import fyales.com.parser.entity.Tag;
 /**
  * 解析标题为标准格式
  * @author fyales
- * @date 26/2/15
+ * @since date 26/2/15
  */
 public class HeaderParser {
     private static final String REGEX_H = "(^#+)(.+)";

@@ -18,7 +18,7 @@ import java.util.concurrent.Executors;
 
 /**
  * @author fyales
- * @date 13/02/15
+ * @since date 13/02/15
  */
 public class FyalesImageLoader {
 

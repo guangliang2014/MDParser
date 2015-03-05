@@ -9,7 +9,7 @@ import android.os.StatFs;
  * 获取SD卡的信息
  *
  * @author fyales
- * @date 13/02/15
+ * @since date 13/02/15
  */
 public class SDCardUtil {
 
