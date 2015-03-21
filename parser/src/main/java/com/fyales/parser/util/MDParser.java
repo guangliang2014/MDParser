@@ -18,7 +18,9 @@ import java.util.regex.Pattern;
  * <ul>
  * <li>#标签</li>
  * <li>图片标签</li>
+ * <li>超链接标签</li>
  * </ul>
+ *
  *
  * @author fyales
  * @since date 10/02/15
